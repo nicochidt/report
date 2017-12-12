@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 import wx
 from MainView import *
+from HiEnds import *
 
-SIZE = (1000, 500)
+SIZE = (1000, 650)
 
 class MainFrame(wx.Frame):
 
     def __init__(self, parent, title):
         wx.Frame.__init__(self, parent, title=title, size = SIZE, style =  wx.DEFAULT_FRAME_STYLE)
         
-        self.mainPanel = MainView(self)
+        #self.mainPanel = MainView(self)
+        self.HiEnds = HiEnds(self)
         
         
        # self.control = wx.TextCtrl(self, style=wx.TE_MULTILINE)

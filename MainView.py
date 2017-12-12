@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import wx
+import wx.calendar
 
 class MainView(wx.Panel):
     def __init__(self, parent):
@@ -18,7 +19,6 @@ class MainView(wx.Panel):
         persSizer = wx.StaticBoxSizer(box)
 
 
-
         # Personal Information
         text = ['Nombre', 'Apellido', 'DNI', 'Obra Social', 'Nro. Afiliado']
         self.textField = []
@@ -29,26 +29,46 @@ class MainView(wx.Panel):
             t = wx.StaticText(self, label = i)
             gridSizer.Add(t, pos = (j + 1,1))
             b = wx.TextCtrl(self, size = (200,20))
-            b.Bind(wx.EVT_KEY_DOWN, self.OnTab)
             self.textField.append(b)
             gridSizer.Add(b, pos = (j + 1,2))
         persSizer.Add(gridSizer)
+        
+        box = wx.StaticBox(self, wx.ID_ANY, "Información del Estudio")
+        Sizer = wx.StaticBoxSizer(box)
+        gridSizer = wx.GridBagSizer(wx.VERTICAL)
+        
+        tx = wx.StaticText(self, label = 'Fecha')
+        gridSizer.Add(tx, pos = (0,0))
+        self.cal = wx.DatePickerCtrl(self, -1, wx.DateTime_Now(), style=wx.DP_DROPDOWN)
+        gridSizer.Add(self.cal, pos = (0,1))
+        tx = wx.StaticText(self, label = 'Operador')
+        gridSizer.Add(tx, pos = (1,0))
+        self.operator = wx.Choice(self, choices = ['Chiaraviglio', 'Perez'])
+        gridSizer.Add(self.operator, pos = (1,1))
+        self.add_operator = wx.Button(self, -1, '+', size = (30,20))
+        gridSizer.Add(self.add_operator, pos = (1,2))
+        
+        
+        Sizer.Add(gridSizer)
+        
+        
 
         # Buttons
         buttSizer.Add((10,10), pos = (0,10))
         self.bAlta = wx.ToggleButton(self, -1, "Endoscopía Alta")
-        gridSizer.Add(self.bAlta,  pos = (7,1))
+        buttSizer.Add(self.bAlta,  pos = (0,1))
         #buttSizer.Add(self.bAlta,  pos = (0,1))
         self.bBaja = wx.ToggleButton(self, -1, "Endoscopía Baja")
         #buttSizer.Add(self.bBaja,  pos = (0,2))
-        gridSizer.Add(self.bBaja,  pos = (7,2))
+        buttSizer.Add(self.bBaja,  pos = (0,2))
         bNext = wx.Button(self, -1, "Siguiente")
-        buttSizer.Add(bNext,  pos = (2,2))
+        buttSizer.Add(bNext,  pos = (1,2))
         bNext.Bind(wx.EVT_BUTTON, self.OnNext)
 
         # Arrange Layout
         mainSizer.Add(persSizer, 0, wx.ALL, 5)
-        mainSizer.Add(buttSizer,1, wx.ALL, 5)
+        mainSizer.Add(Sizer, 0, wx.ALL, 5)
+        mainSizer.Add(buttSizer,0, wx.ALL, 5)
 
         persSizer.SetSizeHints(self)
         buttSizer.SetSizeHints(self)
