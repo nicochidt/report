@@ -2,17 +2,21 @@
 import wx
 from MainView import *
 from HiEnds import *
+from LowEnds import *
 
-SIZE = (1000, 650)
+SIZE = (1280, 800)
+LoSize = (600,800) 
 
 class MainFrame(wx.Frame):
 
     def __init__(self, parent, title):
-        wx.Frame.__init__(self, parent, title=title, size = SIZE, style =  wx.DEFAULT_FRAME_STYLE)
+        wx.Frame.__init__(self, parent, title=title, style =  wx.DEFAULT_FRAME_STYLE)
         
         #self.mainPanel = MainView(self)
-        self.HiEnds = HiEnds(self)
-        
+        #self.HiEnds = HiEnds(self)
+        # self.SetSize(SIZE)
+        self.LowEnds = LowEnds(self)
+        self.SetSize(LoSize)
         
        # self.control = wx.TextCtrl(self, style=wx.TE_MULTILINE)
         self.CreateStatusBar()

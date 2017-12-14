@@ -295,7 +295,7 @@ class HiEnds(wx.Panel):
     
     def _reason(self):
         
-        box = wx.StaticBox(self, wx.ID_ANY, "Motivo de estudio")
+        box = wx.StaticBox(self, wx.ID_ANY, "Motivo de estudio - Endoscopía Alta")
         Sizer = wx.StaticBoxSizer(box)
         self.reason = wx.TextCtrl(self, size = (1250,60), style = wx.TE_MULTILINE)
         Sizer.Add(self.reason)
