@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package report;
+
+message polipoBajo {
+    enum Location {
+        CD = 0;
+        CT = 1;
+        SIGMOIDES = 2;
+        RECTO = 3;
+    }
+    
+    enum Paris {
+        IP = 0;
+        ISP = 1;
+        IS = 2;
+        IIA = 3;
+        IIB = 4;
+        IIC = 5;
+    }
+    
+    enum Kudo {
+        I = 0;
+        II =1;
+        III = 2;
+        IV = 3;
+        V = 4;
+        
+    }
+    
+    Location location = 1;
+    float size = 2;
+    Paris paris = 3;
+    Kudo kudo = 4; 
+    string other = 5; 
+    
+    string polipectomia = 6;
+    
+}
+
+message Paciente {
+    string nombre = 1;
+    string apellido = 2;
+    string dni = 3;
+    string obra_soc = 4;
+    string nro_aff = 5;
+}
+
+message TactoRectal {
+    enum Tacto {
+        NORMAL = 0;
+        ESFINTER_HIPOTONICO = 1;
+        HEMORROIDES_EXTERNAS = 2;
+    }
+    
+    Tacto tacto = 1;
+    string other = 2;
+    
+}
+
+message LlegadaCiego {
+    bool llegada = 1;
+    string motivo = 2;
+}
+
+message PatronVascular{
+    bool conservado = 1;
+    string other = 2;
+}
+
+message Mucosa{
+    bool normal = 1;
+    string other = 2;
+}
+
+message Boston {
+    int32 CD = 1;
+    int32 CT = 2;
+    int32 CI = 3;
+    int32 total = 4;
+}
+
+message endBaja {
+    TactoRectal tacto = 1;
+    LlegadaCiego ciego =2;
+    PatronVascular pv = 3;
+    Mucosa mucosa = 4;
+    Boston boston = 5;
+    
+    
+    
+}
