@@ -5,11 +5,9 @@ class LowEnds(wx.Panel):
 
     def __init__(self, parent):
         wx.Panel.__init__(self, parent = parent)
+        self.size = (760,680) 
         self.MainWindow()
-    
-    
-    
-    
+        
         
     def MainWindow(self):
         
@@ -35,10 +33,17 @@ class LowEnds(wx.Panel):
         firstSizer.Add(calidad, 0, wx.ALL, 0)
         
         lessSizer = wx.BoxSizer(wx.VERTICAL)
-        
         lesiones = self._lesiones()
         secondSizer.Add(lesiones, 0, wx.ALL, 0)
         
+        self.bNext = wx.Button(self, -1, "Generar Informe", size = (150, 40))
+        self.bPrev = wx.Button(self, -1, "Anterior", size = (150, 40))
+        bSizer = wx.BoxSizer(wx.HORIZONTAL)
+        bSizer.Add((55,100))
+        bSizer.Add(self.bPrev, wx.EXPAND)
+        bSizer.Add(self.bNext, wx.EXPAND)
+        
+        secondSizer.Add(bSizer)
         
         panelSizer.Add(firstSizer)
         panelSizer.Add(secondSizer)
@@ -174,7 +179,7 @@ class LowEnds(wx.Panel):
                 ch.Bind(wx.EVT_RADIOBUTTON, self.OnCalidad)
             self.calidad_radio.append(l)
         
-        tx = wx.StaticText(self, label = 'Calidad: ')
+        tx = wx.StaticText(self, label = 'Boston: ')
         self.calidad_total = wx.StaticText(self, label = '0')
         gridSizer.Add(tx, pos = (3, 6))
         gridSizer.Add(self.calidad_total, pos = (3, 7))
@@ -191,7 +196,7 @@ class LowEnds(wx.Panel):
         boxAuxSizer = wx.StaticBoxSizer( box, wx.HORIZONTAL)
         hsizer = wx.BoxSizer(wx.HORIZONTAL)
         vsizer = wx.BoxSizer(wx.VERTICAL)
-        tags = ['CD','CT', 'Sigmoidea??', 'R']
+        tags = ['CD','CT', 'Sigmoides', 'Recto']
         self.lesiones_vasculares = []
         for i,j in enumerate(tags):
             tx = wx.StaticText(self, label = j)
@@ -235,7 +240,7 @@ class LowEnds(wx.Panel):
         boxAuxSizer = wx.StaticBoxSizer( box, wx.HORIZONTAL)
         hsizer = wx.BoxSizer(wx.HORIZONTAL)
         vsizer = wx.BoxSizer(wx.VERTICAL)
-        tags = ['CD','CT', 'Sigmoidea??', 'R']
+        tags = ['CD','CT', 'Sigmoides', 'Recto']
         self.lesiones_diverticulos = []
         for i,j in enumerate(tags):
             tx = wx.StaticText(self, label = j)

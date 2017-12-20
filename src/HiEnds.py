@@ -6,6 +6,7 @@ class HiEnds(wx.Panel):
     
     def __init__(self, parent):
         wx.Panel.__init__(self, parent = parent)
+        self.size = (1280, 800)
         self.MainWindow()
     
     
@@ -400,7 +401,7 @@ class HiEnds(wx.Panel):
                 i.Enable()
     
     def MainWindow(self):
-  
+        
         #globalSizer = wx.BoxSizer(wx.VERTICAL)
         globalSizer = wx.GridBagSizer(hgap = 5, vgap = 5)
     
@@ -411,9 +412,18 @@ class HiEnds(wx.Panel):
         duodeno = self._duodeno()
         
         globalSizer.Add(reasonSizer, pos =(0,0), span = (1,3))
-        globalSizer.Add(esofSizer, pos = (1,0))
-        globalSizer.Add(estogSizer, pos = (1,1))
-        globalSizer.Add(duodeno, pos = (1,2))
+        globalSizer.Add(esofSizer, pos = (1,0), span = (18,1))
+        globalSizer.Add(estogSizer, pos = (1,1), span = (22,1))
+        globalSizer.Add(duodeno, pos = (1,2), span = (8, 1))
+        
+        self.bNext = wx.Button(self, -1, "Siguiente", size = (150, 40))
+        self.bPrev = wx.Button(self, -1, "Anterior", size = (150, 40))
+        bSizer = wx.BoxSizer(wx.HORIZONTAL)
+        bSizer.Add((165,100))
+        bSizer.Add(self.bPrev, wx.EXPAND)
+        bSizer.Add(self.bNext, wx.EXPAND)
+        
+        globalSizer.Add(bSizer, pos = (9,2))
         
         #globalSizer.Add(reasonSizer)
         #globalSizer.Add(esofSizer)

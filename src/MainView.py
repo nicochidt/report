@@ -5,6 +5,7 @@ import wx.calendar
 class MainView(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent = parent)
+        self.size = (370,400)
         self.MainWindow()
         
     
@@ -50,20 +51,19 @@ class MainView(wx.Panel):
         
         
         Sizer.Add(gridSizer)
-        
-        
 
+        
         # Buttons
         buttSizer.Add((10,10), pos = (0,10))
         self.bAlta = wx.ToggleButton(self, -1, "Endoscopía Alta")
         buttSizer.Add(self.bAlta,  pos = (0,1))
         #buttSizer.Add(self.bAlta,  pos = (0,1))
         self.bBaja = wx.ToggleButton(self, -1, "Endoscopía Baja")
-        #buttSizer.Add(self.bBaja,  pos = (0,2))
+        
         buttSizer.Add(self.bBaja,  pos = (0,2))
-        bNext = wx.Button(self, -1, "Siguiente")
-        buttSizer.Add(bNext,  pos = (1,2))
-        bNext.Bind(wx.EVT_BUTTON, self.OnNext)
+        self.bNext = wx.Button(self, -1, "Siguiente")
+        buttSizer.Add(self.bNext,  pos = (1,2))
+        
 
         # Arrange Layout
         mainSizer.Add(persSizer, 0, wx.ALL, 5)
@@ -88,9 +88,3 @@ class MainView(wx.Panel):
             event.EventObject.Navigate()
         event.Skip()
 
-
-    def OnNext(self, event):
-        baja = self.bBaja.GetValue()
-        alta = self.bAlta.GetValue()
-
-        print baja, alta
